@@ -1,5 +1,5 @@
 
- 
+ /* login part */
 .login-logo svg{
      top: 0px;
      height: 100px;
@@ -78,16 +78,19 @@ div .button:hover{
      margin: 0 auto;
      margin-bottom: 20px;
 }
+
+/* filter total data */
 .part-create{
      width: 10%;
 }
 .part-search{
      width: 70%;
 }
-/* Home Dashboard */
+
+/* Home Dashboard filter total data */
 .box-1,.box-2,.box-3{
-     border-radius: 10px;
-     padding: 15px;
+     border-radius: 5px;
+     padding: 10px;
      margin-bottom: 10px;
      font-family: 'Poppins', sans-serif;
 }
@@ -101,7 +104,7 @@ div .button:hover{
 
 .title-icon{
      padding-top: -50px;
-     font-size: 50px;
+     font-size: 40px;
 }
 .box-body{
      color: black;
@@ -110,7 +113,7 @@ div .button:hover{
 }
 
 .box-body-total{
-     font-size: 22px;
+     font-size: 18px;
      font-weight: 400;
 }
 
@@ -119,8 +122,41 @@ div .button:hover{
      width: auto;
      height: 150px;
 }
+
+/* view datail part  */
 .profile-img img{
      border-radius: 50%;
      width: 300px;
      height: 300px;
+}
+.profile-img-book img{
+     margin-left: 20px;
+     width: 300px;
+     height: 90%;
+
+}
+.book-description{
+     margin-left: 20px;
+     margin-right: 20px;
+     padding-top: 10px;
+}
+.book-description label{
+     border-bottom: 1px solid #000;
+     width: 100%;
+}
+.book-detail{
+     margin-right: 20px;
+}
+
+/* home dasbhoard card view book  */
+.book-view-body{
+     height: 5rem;
+
+}
+.book-card-body{
+     height: 6%;
+     padding: 5px;
+}
+.book-action-footer{
+     
 }

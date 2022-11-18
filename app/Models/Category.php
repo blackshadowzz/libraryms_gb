@@ -14,4 +14,7 @@ class Category extends Model
     public function rack(){
         return $this->belongsTo(Rack::class);
     }
+    public function book(){
+        return $this->hasMany(Book::class);
+    }
 }
