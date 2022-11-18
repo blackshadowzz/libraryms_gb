@@ -32,12 +32,12 @@ Route::middleware('auth')->group(function(){
 
     //view book home page
     Route::get('home',function(Request $re){
-        $book=Book::with('Supplier')->with('Category')->with('Author')->paginate(6);
+        $book=Book::with('Supplier')->with('Category')->with('Author')->paginate(7);
         if($re->query('search')){
             $book=Book::where('book_title','LIKE','%'.$re->query('search').'%')
             ->orWhere('isbn','LIKE','%'.$re->query('search').'%')
             ->orWhere('language','LIKE','%'.$re->query('search').'%')
-            ->with('Supplier')->with('Category')->with('Author')->paginate(6);
+            ->with('Supplier')->with('Category')->with('Author')->paginate(7);
         }
         $b_count=Book::all()->count();
         $cate_count=Category::all()->count();
