@@ -106,7 +106,7 @@
                          
                               <div class="book-action-footer">
                                    <a href="/books/{{ $b->id }}" class="btn btn-info btn-sm mr-5">View</a>
-                                   <a href="/books/{{ $b->id }}/edit" class="btn btn-primary btn-sm ml-2">Edit</a>
+                                   {{-- <a href="/books/{{ $b->id }}/edit" class="btn btn-primary btn-sm ml-2">Edit</a> --}}
                               </div>
                          </div>
                          
