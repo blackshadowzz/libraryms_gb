@@ -10,11 +10,7 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(Request $re)
     {
         $book=Book::with('Supplier')->with('Category')->with('Author')->paginate(5);
@@ -24,28 +20,19 @@ class BookController extends Controller
             ->orWhere('language','LIKE','%'.$re->query('search').'%')
             ->with('Supplier')->with('Category')->with('Author')->paginate(5);
         }
+        $b_count=Book::all()->count();
         $cate=Category::with('Rack')->get();
         $auth=Author::get(['id','fullname']);
         $supp=Supplier::get(['id','supplier_name','company_name']);
-        return view('books.index',compact('book','auth','supp','cate'));
+        return view('books.index',compact('book','auth','supp','cate','b_count'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $re)
     {
         $this->validate($re,[
@@ -80,37 +67,42 @@ class BookController extends Controller
         return view('books.view',compact('book'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Book  $book
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Book $book)
     {
-        //
+        $book=Book::where('id', $book->id)->with('Supplier')->with('Category')->with('Author')->first();
+        $cate=Category::with('Rack')->get();
+        $auth=Author::get(['id','fullname']);
+        $supp=Supplier::get(['id','supplier_name','company_name']);
+        return view('books.update',compact('book','cate','auth','supp'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Book  $book
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Book $book)
+
+    public function update(Request $re, Book $book)
     {
-        //
+        $this->validate($re,[
+            'book_title'=>'required|max:200|min:3',
+            'isbn'=>'required|max:30|min:5',
+            'description'=>'required|max:500|min:5',
+        ]);
+        $data=$re->except(['_token','photo','created_by','_method','id']);
+
+        if($re->hasFile('photo') && $re->file('photo')->isValid()){
+            $image=time().'.'.$re->file('photo')->getClientOriginalExtension();
+            $re->file('photo')->storeAs('books/cover',$image,'public');
+            $data['image_path']=$image;
+        }
+        if(Book::where('id',$book->id)->update($data)){
+            return redirect('books')
+                        ->with('message_danger','One record has been updated successfully!!!');
+        }
+        return back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Book  $book
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Book $book)
     {
-        //
+        if(Book::where('id', $book->id)->delete()){
+            return redirect('books')->with('message_danger', 'One record has been deleted successfully!');
+        }
     }
 }

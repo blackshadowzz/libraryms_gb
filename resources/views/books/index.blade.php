@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title','Book')
 @push('Header')
-     Book
+     Book {{ $b_count }}
 @endpush
 @push('sub_Header')
      <a href="/books">book</a> / index
@@ -16,7 +16,7 @@
                     </div>
                @endif
                @if(Session::has('message_danger'))
-                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
                          {{Session::get('message_danger')}}
                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
@@ -41,7 +41,7 @@
                                    <th style="width: 9%">Actions</th>
                               </tr>
                          </thead>
-                         <tbody>
+                         <tbody id="search_data">
                          @foreach ($book as $b)
                               
 

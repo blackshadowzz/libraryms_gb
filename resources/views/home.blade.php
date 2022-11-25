@@ -67,7 +67,7 @@
                     <form action="/home" method="get">
                          <div class="input-group">
                               <span class="input-group-text" id="search-box">Search</span>
-                              <input type="search" name="search" class="form-control" placeholder="Search..." aria-label="Username" aria-describedby="basic-addon1">
+                              <input type="search" id="search_box" name="search" class="form-control" placeholder="Search title, isbn, language" aria-label="Username" aria-describedby="basic-addon1">
                               <button type="submit" class="btn btn-info">Search</button>
                          </div>
                     </form>
@@ -81,19 +81,33 @@
                                   </svg>
                                   Filter
                               </button>
-                              <ul class="dropdown-menu">
-                                   <form action="/home" method="get">
-                                        <li class="">
 
-                                        </li>
-                                   </form>
+                              <ul class="dropdown-menu">
+                                   <li class="">
+                                        <form method="get" action="/home" class="">
+                                             <button class=" border-0 mb-2 w-6"><a href="/home?filter=asc" class="btn btn-info px-4 form-control text-white">Sort By Old</a></button>
+                                             <button class=" border-0"><a href="/home?filter=desc" class="btn btn-info px-4 form-control">Sort By New</a></button>
+                                        </form>
+                                   </li>
                               </ul>
                           </div>
+                          {{-- <form action="/home" method="get">
+                             
+                                   <select name="filter" id="" class="form-select">
+                                        <option value="">Filter</option>
+                                        <button>
+                                             <option value="asc">By Old</option>
+                                        </button>
+                                   </select>
+                         </form> --}}
+
+                                   
+
                     </div>
                </div>
           </div>
      </div>
-     <div class="book-view-list d-flex justify-content-between ">
+     <div class="book-view-list d-flex justify-content-between" id="search_data">
           @foreach ($book as $b)
                <div class="card mr-4" style="width: 10rem;">
                     <img src="/storage/books/cover/{{ $b->image_path }}" class="card-img-top" alt="Book Cover">
@@ -109,8 +123,6 @@
                                    {{-- <a href="/books/{{ $b->id }}/edit" class="btn btn-primary btn-sm ml-2">Edit</a> --}}
                               </div>
                          </div>
-                         
-                    
                     </div>
                </div>
           @endforeach
@@ -120,5 +132,15 @@
      <div class="d-flex justify-content-center ">
           {{ $book->links('pagination::bootstrap-4') }}
      </div>
+     <script>
+          $(document).ready(function(){
+               $("#search_box").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $("#search_data").filter(function() {
+                         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+               });
+          });
+      </script>
 </div>
 @endsection

@@ -10,7 +10,7 @@
           <form action="/books" method="get">
                <div class="input-group">
                     <span class="input-group-text" id="search-box">Search</span>
-                    <input type="search" name="search" class="form-control" placeholder="Search title, isbn, language" aria-label="Username" aria-describedby="basic-addon1">
+                    <input type="search" id="search_box" name="search" class="form-control" placeholder="Search title, isbn, language" aria-label="Username" aria-describedby="basic-addon1">
                     <button type="submit" class="btn btn-info">Search</button>
                </div>
           </form>
@@ -27,8 +27,11 @@
                         </svg>
                         Filter
                     </button>
+                    {{-- <select name="" id="">
+                         <option value="all">All</option>
+                    </select> --}}
                     <ul class="dropdown-menu">
-                         <li class=""></li>
+                         <li class=""><a href="/home?filter=asc">Sort by old</a></li>
                     </ul>
                 </div>
           </div>
