@@ -50,7 +50,7 @@
                  </div>
           </div>
           <div>
-               <table class="table table-bordered table-striped table-hover shadow mt-2">
+               <table class="table table-striped table-hover shadow mt-2">
                     <thead class="table-dark">
                          <tr>
                               <th scope="col">ID</th>

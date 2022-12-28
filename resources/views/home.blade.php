@@ -7,7 +7,7 @@
 @endpush
 @section('content')
 <div class="row">
-     <div class="col-md-4">
+     <div class="col-md-3">
           <div class="box-1 shadow bg-primary ">
                <div class="box-title row align-items-start text-white ">
                     <div class="col-sm-6">Book</div>
@@ -22,7 +22,7 @@
                </div>
           </div>
      </div>
-     <div class="col-md-4">
+     <div class="col-md-3">
           <div class="box-1 shadow bg-success ">
                <div class="box-title row align-items-start text-white ">
                     <div class="col-sm-6">author</div>
@@ -37,7 +37,7 @@
                </div>
           </div>
      </div>
-     <div class="col-md-4">
+     <div class="col-md-3">
           <div class="box-1 shadow bg-info ">
                <div class="box-title row align-items-start text-white ">
                     <div class="col-sm-6">Category</div>
@@ -49,6 +49,21 @@
                <div class="box-body row align-items-end text-white">
                     <div class="box-body-total col-md-6">TOTAL</div>
                     <div class="col-sm-6 text-right">{{ $cate_count }}</div>
+               </div>
+          </div>
+     </div>
+     <div class="col-md-3">
+          <div class="box-1 shadow bg-secondary ">
+               <div class="box-title row align-items-start text-white ">
+                    <div class="col-sm-6">Staff</div>
+                    <div class="title-icon col-sm-6 text-right">
+                         <i class="bi bi-people-fill"></i>
+                    </div>
+
+               </div>
+               <div class="box-body row align-items-end text-white">
+                    <div class="box-body-total col-md-6">TOTAL</div>
+                    <div class="col-sm-6 text-right">2</div>
                </div>
           </div>
      </div>

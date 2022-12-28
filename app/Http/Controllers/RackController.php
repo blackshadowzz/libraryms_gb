@@ -67,7 +67,7 @@ class RackController extends Controller
      */
     public function edit($id)
     {
-        $rack=Rack::find($id)->first();
+        $rack=Rack::where('id',$id)->first();
         return view('racks.update')->with('rack',$rack);
     }
 
